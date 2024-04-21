@@ -1,0 +1,20 @@
+version: '3.7'
+services:
+  app:
+    container_name: jda-infra
+    command: tail -f /dev/null
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - type: bind
+        source: ./
+        target: /var/www
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    networks:
+      - default
+
+networks:
+  default: {}
+
